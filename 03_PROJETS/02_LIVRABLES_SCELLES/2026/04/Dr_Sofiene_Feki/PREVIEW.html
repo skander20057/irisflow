@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Sofiene Feki | Ophtalmologie & Chirurgie de Pointe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    colors: {
+                        authority: {
+                            deep: '#1E293B',
+                            primary: '#0F172A',
+                            accent: '#2563EB',
+                            soft: '#F8FAFC',
+                            border: 'rgba(15, 23, 42, 0.06)',
+                        }
+                    },
+                    borderRadius: { 'bento': '24px' },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #F8FAFC; color: #0F172A; }
+        .bento-trust {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-trust:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 100, 0.04);
+            border-color: rgba(37, 99, 235, 0.1);
+        }
+        .text-authority {
+            background: linear-gradient(135deg, #0F172A 0%, #334155 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .authority-gradient {
+            background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+        }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Navigation Authority -->
+    <nav class="p-8 max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div class="h-12 w-12 bg-authority-primary rounded-xl flex items-center justify-center font-serif text-white text-2xl">F</div>
+            <div>
+                <h1 class="font-bold text-lg leading-tight uppercase tracking-tight">Dr. Sofiene Feki</h1>
+                <p class="text-[10px] uppercase tracking-widest text-authority-accent font-bold">Ophtalmologie & Chirurgie</p>
+            </div>
+        </div>
+        <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+            <a href="#expertise" class="hover:text-authority-accent transition-all">Expertise</a>
+            <a href="#pathologies" class="hover:text-authority-accent transition-all">Pathologies</a>
+            <a href="#contact" class="hover:text-authority-accent transition-all">Contact</a>
+        </div>
+        <button class="bg-authority-primary text-white px-8 py-3.5 rounded-2xl font-bold hover:bg-authority-accent transition-all shadow-xl shadow-blue-900/10">
+            Réserver un avis
+        </button>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-8 py-12">
+        
+        <!-- Hero Section : Trust & Authority -->
+        <div class="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-8">
+            
+            <!-- Hero Card: Human & Kind -->
+            <div class="md:col-span-8 md:row-span-2 bento-trust overflow-hidden relative group">
+                <div class="absolute inset-0 z-0">
+                    <!-- Image Placeholder for the generated AI image -->
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000" 
+                         class="w-full h-full object-cover grayscale-[10%] opacity-90 transition-transform duration-1000 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent"></div>
+                </div>
+                <div class="relative z-10 p-16 h-full flex flex-col justify-center max-w-xl">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-authority-accent text-[10px] font-bold uppercase tracking-widest mb-8 border border-blue-100 italic">
+                        Expertise & Bienveillance
+                    </span>
+                    <h2 class="text-6xl font-serif text-authority leading-[1.1] mb-8 italic">
+                        Votre vision mérite <br> une <span class="text-authority-accent underline decoration-blue-200 underline-offset-8">attention humaine.</span>
+                    </h2>
+                    <p class="text-slate-500 text-lg leading-relaxed mb-10">
+                        Chirurgien spécialiste depuis plus de 20 ans, le Dr Sofiene Feki allie la précision chirurgicale à une écoute attentive des Berges du Lac 2.
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="px-10 py-5 bg-authority-primary text-white rounded-2xl font-bold shadow-2xl hover:bg-authority-accent transition-all">Comprendre ma pathologie</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specialist Card -->
+            <div class="md:col-span-4 md:row-span-1 bento-trust p-10 flex flex-col justify-between bg-slate-900 text-white border-none">
+                <div class="text-3xl">✦</div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">Chirurgie de la Cataracte</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">Technologie Femtoseconde pour une récupération foudroyante en 24h.</p>
+                </div>
+            </div>
+
+            <!-- Experience Card -->
+            <div class="md:col-span-4 md:row-span-1 bento-trust p-10 flex flex-col justify-center text-center authority-gradient">
+                <div class="text-5xl font-serif italic text-authority-accent mb-2">20+</div>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Années d'Expérience Clinique</p>
+            </div>
+
+            <!-- Location Hub -->
+            <div class="md:col-span-5 md:row-span-1 bento-trust p-10 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-xs font-bold text-authority-accent uppercase tracking-widest mb-4">Emplacement Privilégié</h4>
+                    <p class="text-xl font-bold text-authority">Immeuble Érable Médical, Lac 2</p>
+                    <p class="text-slate-500 text-sm mt-2">Cité les Pins, Berges du Lac II, Tunis.</p>
+                </div>
+                <div class="text-2xl font-bold text-authority">+216 70 294 969</div>
+            </div>
+
+            <!-- Tech Badge -->
+            <div class="md:col-span-3 md:row-span-1 bento-trust p-10 flex flex-col items-center justify-center text-center group">
+                <div class="h-16 w-16 bg-blue-50 rounded-full flex items-center justify-center text-3xl mb-4 group-hover:rotate-12 transition-transform">👁️</div>
+                <h4 class="font-bold text-sm">Chirurgie Réfractive</h4>
+                <p class="text-slate-400 text-[10px] uppercase mt-1">Laser / Lasik / PKR</p>
+            </div>
+
+            <!-- Educational Banner -->
+            <div class="md:col-span-4 md:row-span-1 bento-trust p-10 flex flex-col justify-between bg-blue-600 text-white">
+                <div class="text-sm font-bold uppercase tracking-widest opacity-80 italic italic">Nouveau : Guide Patient</div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Comprendre le Kératocône</h3>
+                    <p class="text-white/70 text-sm mb-6">Un guide pédagogique pour vous et vos proches.</p>
+                    <button class="w-full py-4 bg-white/10 hover:bg-white/20 transition-all rounded-xl font-bold border border-white/20 text-sm">Lire l'article</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pathology Education Section (Elite Focus) -->
+        <section id="pathologies" class="mt-40">
+            <div class="text-center max-w-3xl mx-auto mb-24">
+                <h2 class="text-5xl font-serif text-authority italic leading-tight mb-8">L'expertise au service de <br> <span class="text-authority-accent">votre compréhension.</span></h2>
+                <div class="w-20 h-1 bg-authority-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bento-trust p-12 hover:bg-white transition-all">
+                    <h3 class="text-2xl font-bold mb-6 text-authority">La Cataracte</h3>
+                    <p class="text-slate-500 leading-relaxed font-medium mb-8">Nous expliquons chaque étape de l'intervention laser. Une procédure de 15 minutes pour retrouver une vision cristalline.</p>
+                    <a href="#" class="text-authority-accent font-bold text-xs uppercase tracking-[0.2em] border-b-2 border-blue-100 pb-2">Dossier Complet</a>
+                </div>
+                <div class="bento-trust p-12 bg-white">
+                    <h3 class="text-2xl font-bold mb-6 text-authority">Maladies de la Rétine</h3>
+                    <p class="text-slate-500 leading-relaxed font-medium mb-8">Diagnostic précoce et traitement des pathologies rétino-vitréennes avec un matériel d'imagerie de dernière génération.</p>
+                    <a href="#" class="text-authority-accent font-bold text-xs uppercase tracking-[0.2em] border-b-2 border-blue-100 pb-2">Dossier Complet</a>
+                </div>
+                <div class="bento-trust p-12 hover:bg-white transition-all">
+                    <h3 class="text-2xl font-bold mb-6 text-authority">Chirurgie au Laser</h3>
+                    <p class="text-slate-500 leading-relaxed font-medium mb-8">Dites adieu aux lunettes. Correction de la myopie et de l'astigmatisme par Femto-Lasik haute performance.</p>
+                    <a href="#" class="text-authority-accent font-bold text-xs uppercase tracking-[0.2em] border-b-2 border-blue-100 pb-2">Dossier Complet</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="mt-48 bg-white border-t border-slate-100 py-32 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-24">
+            <div class="max-w-md">
+                <div class="text-3xl font-serif italic text-authority-primary mb-8 tracking-tighter">Dr. Sofiene Feki</div>
+                <p class="text-slate-400 text-sm leading-relaxed font-medium">Spécialiste conventionné CNAM. Excellence ophtalmologique reconnue en Tunisie et à l'international.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.3em] text-authority-accent">Consultations</h5>
+                    <p class="text-slate-600 text-sm font-bold leading-relaxed">
+                        Lac Médical Center, Cabinet 335<br>
+                        Berges du Lac 2, Tunis.
+                    </p>
+                    <div class="text-xl font-bold text-authority">+216 70 294 969</div>
+                </div>
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.3em] text-authority-accent">Horaires de Reception</h5>
+                    <ul class="text-slate-500 text-sm space-y-4 font-bold">
+                        <li class="flex justify-between"><span>Lundi - Vendredi</span> <span class="text-authority">09:00 - 18:00</span></li>
+                        <li class="flex justify-between"><span>Samedi sur RDV</span> <span class="text-authority">09:00 - 13:00</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

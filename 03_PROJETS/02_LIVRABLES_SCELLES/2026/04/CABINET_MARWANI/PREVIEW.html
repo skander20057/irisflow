@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Marwani Malek | Cabinet Dentaire Elite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        premium: {
+                            bg: '#F5F5F7',
+                            card: '#FFFFFF',
+                            accent: '#0696D6',
+                            text: '#1D1D1F',
+                            muted: '#86868B',
+                        }
+                    },
+                    borderRadius: {
+                        'bento': '24px',
+                    },
+                    scale: {
+                        '102': '1.02',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #F5F5F7; }
+        .bento-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .bento-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="text-premium-text">
+
+    <nav class="p-6 max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold tracking-tighter uppercase">DR. MARWANI MALEK</div>
+        <div class="hidden md:flex gap-8 text-sm font-medium text-premium-muted uppercase tracking-widest">
+            <a href="#" class="hover:text-premium-accent transition-colors">Expertise</a>
+            <a href="#" class="hover:text-premium-accent transition-colors">Services</a>
+            <a href="#" class="hover:text-premium-accent transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <main class="px-6 py-12 max-w-7xl mx-auto">
+        <!-- Hero Section -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
+            <div class="md:col-span-3 h-[500px] bento-card relative group">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent z-10"></div>
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2070" 
+                     class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700">
+                <div class="absolute bottom-0 left-0 p-10 z-20 w-full bg-gradient-to-t from-black/60 to-transparent">
+                    <h1 class="text-5xl font-bold text-white mb-4 leading-tight">
+                        L'Excellence Dentaire <br> au Cœur des Berges du Lac.
+                    </h1>
+                    <p class="text-white/80 text-lg max-w-xl">
+                        Le cabinet du Dr Marouani Malek allie technologie de pointe et confort absolu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bento-card bg-[#0696D6] p-8 flex flex-col justify-between text-white">
+                <div class="text-4xl">📅</div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">Prendre RDV</h3>
+                    <p class="text-white/80 mb-6">Disponibilités en 24h pour les urgences.</p>
+                    <button class="w-full bg-white text-[#0696D6] py-4 rounded-2xl font-bold hover:bg-opacity-90 transition-colors">
+                        S'inscrire
+                    </button>
+                </div>
+            </div>
+
+            <div class="bento-card p-8 flex flex-col justify-between border border-gray-100">
+                <div class="text-[#0696D6] text-3xl font-bold">71 267 588</div>
+                <p class="text-premium-muted">Lac Médical Center, Cabinet B3-2</p>
+            </div>
+
+            <div class="bento-card col-span-1 md:col-span-2 p-8 flex items-center gap-6">
+                <div class="h-16 w-16 bg-blue-50 rounded-full flex items-center justify-center text-[#0696D6] text-2xl">⚡</div>
+                <div>
+                    <h3 class="text-lg font-bold">Spécialiste Implantologie</h3>
+                    <p class="text-premium-muted text-sm text-balance">Chirurgien Dentiste - Berges du Lac 2</p>
+                </div>
+            </div>
+
+            <div class="bento-card p-8 bg-gray-900 text-white">
+                <h3 class="font-bold mb-2">Laser & Tech</h3>
+                <p class="text-xs text-white/60 uppercase tracking-widest">Innovation 2026</p>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Nos Spécialités</h2>
+            <p class="text-premium-muted">Une expertise complète pour votre santé bucco-dentaire.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bento-card p-10 flex flex-col justify-between bg-blue-50 md:col-span-2">
+                <div class="text-4xl mb-8">🦷</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-2">Implantologie</h3>
+                    <p class="text-premium-muted text-sm leading-relaxed">Prothèse fixe et amovible sur implant, bridge complet.</p>
+                </div>
+            </div>
+            <div class="bento-card p-10 flex flex-col justify-between bg-purple-50">
+                <div class="text-4xl mb-8">✨</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-2">Chirurgie Laser</h3>
+                    <p class="text-premium-muted text-sm leading-relaxed">Freinectomie et soins sans douleur par laser.</p>
+                </div>
+            </div>
+            <div class="bento-card p-10 flex flex-col justify-between bg-emerald-50">
+                <div class="text-4xl mb-8">💎</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-2">Esthétique</h3>
+                    <p class="text-premium-muted text-sm leading-relaxed">Blanchiment et facettes dentaires.</p>
+                </div>
+            </div>
+            <div class="bento-card p-10 flex flex-col justify-between bg-amber-50 md:col-span-2">
+                <div class="text-4xl mb-8">🛡️</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-2">Soins Préventifs</h3>
+                    <p class="text-premium-muted text-sm leading-relaxed">Détartrage et traitement des caries.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="px-6 py-20 bg-white border-t border-gray-100 mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h4 class="font-bold mb-6 italic tracking-tight">Marwani Dental Studio</h4>
+                <p class="text-premium-muted text-sm leading-relaxed">Redéfinir le sourire par l'innovation technique.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-[#0696D6]">Horaires</h4>
+                <ul class="text-premium-muted text-sm space-y-2 font-medium">
+                    <li>Lun - Ven : 09:00 - 18:00</li>
+                    <li>Sam : 09:00 - 13:00</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-[#0696D6]">Accès</h4>
+                <p class="text-premium-muted text-sm leading-relaxed font-medium">
+                    Lac Médical Center, Cabinet B3-2, Tunis<br>
+                    Près de la Clinique Hannibal.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

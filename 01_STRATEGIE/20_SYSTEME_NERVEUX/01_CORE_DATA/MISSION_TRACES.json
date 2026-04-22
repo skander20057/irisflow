@@ -1,0 +1,435 @@
+{
+  "MISSION_TEST_ALPHA_V131": {
+    "metadata": {
+      "start": 1776452956344,
+      "label": "MISSION : TEST ALPHA V131",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776452956344,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : TEST ALPHA V131",
+        "agent": "COO"
+      },
+      {
+        "time": 1776452956347,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776452956458,
+        "step": "PRODUCTION",
+        "status": "Expert RD : Exécution en cours",
+        "agent": "AGENT_RD"
+      },
+      {
+        "time": 1776452956460,
+        "step": "PRODUCTION",
+        "status": "RD : Innovation Lab",
+        "agent": "AGENT_RD"
+      }
+    ]
+  },
+  "MISSION_CERTIFICATION_V131": {
+    "metadata": {
+      "start": 1776453155786,
+      "label": "MISSION : CERTIFICATION FINALE V131",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776453155786,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : CERTIFICATION FINALE V131",
+        "agent": "COO"
+      },
+      {
+        "time": 1776453155808,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776453155822,
+        "step": "PRODUCTION",
+        "status": "Expert RD : Exécution en cours",
+        "agent": "AGENT_RD"
+      },
+      {
+        "time": 1776453155824,
+        "step": "PRODUCTION",
+        "status": "RD : Innovation Lab",
+        "agent": "AGENT_RD"
+      }
+    ]
+  },
+  "MISSION": {
+    "metadata": {
+      "start": 1776453158299,
+      "label": "MISSION",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776453158299,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      },
+      {
+        "time": 1776454800102,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      },
+      {
+        "time": 1776454800110,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      },
+      {
+        "time": 1776455562846,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      }
+    ]
+  },
+  "MISSION_EVOLUTION_V140": {
+    "metadata": {
+      "start": 1776453809275,
+      "label": "MISSION : EVOLUTION ALPHA V140",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776453809275,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : EVOLUTION ALPHA V140",
+        "agent": "COO"
+      },
+      {
+        "time": 1776453809281,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776453809311,
+        "step": "PRODUCTION",
+        "status": "Expert RD : Exécution en cours",
+        "agent": "AGENT_RD"
+      },
+      {
+        "time": 1776453809315,
+        "step": "PRODUCTION",
+        "status": "RD : Innovation Lab",
+        "agent": "AGENT_RD"
+      },
+      {
+        "time": 1776453838259,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : EVOLUTION ALPHA V140",
+        "agent": "COO"
+      },
+      {
+        "time": 1776453838266,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      }
+    ]
+  },
+  "MISSION_EVOLUTION_ULTIME_V140": {
+    "metadata": {
+      "start": 1776453870534,
+      "label": "MISSION : EVOLUTION ULTIME V140",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776453870534,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : EVOLUTION ULTIME V140",
+        "agent": "COO"
+      },
+      {
+        "time": 1776453870609,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776453871482,
+        "step": "PRODUCTION",
+        "status": "Expert ARCHITECT : Exécution en cours",
+        "agent": "AGENT_ARCHITECT"
+      },
+      {
+        "time": 1776453871483,
+        "step": "PRODUCTION",
+        "status": "ARCHITECT : Architecture Nexus",
+        "agent": "AGENT_ARCHITECT"
+      },
+      {
+        "time": 1776453871883,
+        "step": "PRODUCTION",
+        "status": "Expert RD : Exécution en cours",
+        "agent": "AGENT_RD"
+      },
+      {
+        "time": 1776453871884,
+        "step": "PRODUCTION",
+        "status": "RD : Innovation Lab",
+        "agent": "AGENT_RD"
+      }
+    ]
+  },
+  "SIMU_EXPIRATION": {
+    "metadata": {
+      "start": 1776364488608,
+      "label": "MISSION_GHOST_TEST_V142",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776364488608,
+        "step": "INGESTION",
+        "status": "Démarrage",
+        "agent": "COO"
+      },
+      {
+        "time": 1776364548608,
+        "step": "LIVRAISON",
+        "status": "Succès Chrono",
+        "agent": "AGENT_SYNTHESE"
+      }
+    ]
+  },
+  "MISSION_LOGO_MARWAN": {
+    "metadata": {
+      "start": 1776454751784,
+      "label": "MISSION : CRÉATION VISUELLE - DOCTOR MARWAN",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776454751784,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : CRÉATION VISUELLE - DOCTOR MARWAN",
+        "agent": "COO"
+      },
+      {
+        "time": 1776454751786,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776454752955,
+        "step": "PRODUCTION",
+        "status": "Expert DESIGNER : Exécution en cours",
+        "agent": "AGENT_DESIGNER"
+      },
+      {
+        "time": 1776454752957,
+        "step": "PRODUCTION",
+        "status": "DESIGNER : Création Visuelle",
+        "agent": "AGENT_DESIGNER"
+      },
+      {
+        "time": 1776454753741,
+        "step": "PRODUCTION",
+        "status": "Expert MEDICAL : Exécution en cours",
+        "agent": "AGENT_MEDICAL"
+      },
+      {
+        "time": 1776454753742,
+        "step": "PRODUCTION",
+        "status": "MEDICAL : Contrôle Médical",
+        "agent": "AGENT_MEDICAL"
+      }
+    ]
+  },
+  "MISSION_LOGO_MARWAN_DESIGN": {
+    "metadata": {
+      "start": 1776454867772,
+      "label": "MISSION_LOGO_MARWAN_DESIGN",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776454867772,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      },
+      {
+        "time": 1776455160370,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      }
+    ]
+  },
+  "MISSION_LOGO_MARWAN_MEDICAL": {
+    "metadata": {
+      "start": 1776454867784,
+      "label": "MISSION_LOGO_MARWAN_MEDICAL",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776454867784,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      },
+      {
+        "time": 1776455160376,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      }
+    ]
+  },
+  "MISSION_SITE_ALFA": {
+    "metadata": {
+      "start": 1776455831384,
+      "label": "MISSION : CRÉATION SITE WEB ALFA",
+      "client": "ALFA",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776455831384,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : CRÉATION SITE WEB ALFA",
+        "agent": "COO"
+      },
+      {
+        "time": 1776455831394,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776455832476,
+        "step": "PRODUCTION",
+        "status": "Expert DEV : Exécution en cours",
+        "agent": "AGENT_DEV"
+      },
+      {
+        "time": 1776455832487,
+        "step": "PRODUCTION",
+        "status": "DEV : Ingénierie Tech",
+        "agent": "AGENT_DEV"
+      },
+      {
+        "time": 1776455834850,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine des Valeurs Scellées",
+        "agent": "SENTINELLE"
+      },
+      {
+        "time": 1776455865585,
+        "step": "INGESTION",
+        "status": "Ordre CEO : MISSION : CRÉATION SITE WEB ALFA [CLIENT: ALFA]",
+        "agent": "COO"
+      },
+      {
+        "time": 1776455865592,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776455866077,
+        "step": "PRODUCTION",
+        "status": "Expert DEV : Exécution en cours",
+        "agent": "AGENT_DEV"
+      },
+      {
+        "time": 1776455866079,
+        "step": "PRODUCTION",
+        "status": "DEV : Ingénierie Tech",
+        "agent": "AGENT_DEV"
+      },
+      {
+        "time": 1776455869114,
+        "step": "SHOWCASE",
+        "status": "Exposition dans la Vitrine Client (ALFA)",
+        "agent": "SENTINELLE"
+      }
+    ]
+  },
+  "CMD_1776457994095": {
+    "metadata": {
+      "start": 1776457994709,
+      "label": "ss",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776457994709,
+        "step": "INGESTION",
+        "status": "Ordre CEO : ss",
+        "agent": "COO"
+      },
+      {
+        "time": 1776457994715,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      }
+    ]
+  },
+  "CMD_1776458941572": {
+    "metadata": {
+      "start": 1776458942243,
+      "label": "CMD 02 MISSION: PROSPECTION_IA EXPERT: AGENT_BUSINESS TASK: Extraction_SOP",
+      "archived": true
+    },
+    "history": [
+      {
+        "time": 1776458942243,
+        "step": "INGESTION",
+        "status": "Ordre CEO : CMD 02 MISSION: PROSPECTION_IA EXPERT: AGENT_BUSINESS TASK: Extraction_SOP",
+        "agent": "COO"
+      },
+      {
+        "time": 1776458942428,
+        "step": "STRATEGIC_OVERSIGHT",
+        "status": "Pôle 01 : Cadrage Stratégique",
+        "agent": "AGENT_SYNTHESE"
+      },
+      {
+        "time": 1776458944086,
+        "step": "PRODUCTION",
+        "status": "Expert BUSINESS : Exécution en cours",
+        "agent": "AGENT_BUSINESS"
+      },
+      {
+        "time": 1776458944103,
+        "step": "PRODUCTION",
+        "status": "BUSINESS : Développement Affaires",
+        "agent": "AGENT_BUSINESS"
+      },
+      {
+        "time": 1776458944836,
+        "step": "PRODUCTION",
+        "status": "Expert ARCHITECT : Exécution en cours",
+        "agent": "AGENT_ARCHITECT"
+      },
+      {
+        "time": 1776458944837,
+        "step": "PRODUCTION",
+        "status": "ARCHITECT : Architecture Nexus",
+        "agent": "AGENT_ARCHITECT"
+      }
+    ]
+  }
+}

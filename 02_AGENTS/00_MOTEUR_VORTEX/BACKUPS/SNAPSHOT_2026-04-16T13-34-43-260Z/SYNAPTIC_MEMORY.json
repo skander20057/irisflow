@@ -1,0 +1,20 @@
+[
+  {
+    "id": "SYN-INIT-001",
+    "timestamp": "2026-04-16T03:55:00Z",
+    "agent_id": "antigravity",
+    "topic": "Orchestration V8.0",
+    "problem": "Silos inter-agents causant des redondances.",
+    "solution": "Protocole Neural Collab (AG + Votes).",
+    "reflection": "L'intelligence collective réduit la latence de décision de 40%."
+  },
+  {
+    "id": "SYN-INIT-002",
+    "timestamp": "2026-04-16T03:55:00Z",
+    "agent_id": "cyber",
+    "topic": "Stability",
+    "problem": "Crashs de parsing JSX (OXC).",
+    "solution": "Audit de balises systématique avant commit.",
+    "reflection": "Un build mental de 10s évite 5min de correction de bug."
+  }
+]

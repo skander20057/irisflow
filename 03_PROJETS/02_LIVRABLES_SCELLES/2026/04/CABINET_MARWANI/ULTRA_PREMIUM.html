@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souveraineté Dentaire | Dr. Marouani Malek</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/framer-motion@11.0.3/dist/framer-motion.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: {
+                        obsidian: '#0A0A0B',
+                        card: '#121214',
+                        accent: '#3B82F6',
+                        glass: 'rgba(255, 255, 255, 0.03)',
+                        border: 'rgba(255, 255, 255, 0.08)',
+                    },
+                    borderRadius: { 'bento': '28px' },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #0A0A0B; color: #EDEDED; scroll-behavior: smooth; }
+        
+        /* Noise Texture Overlays (Linear Style) */
+        .noise::before {
+            content: "";
+            position: absolute; inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.05; pointer-events: none; z-index: 10;
+        }
+
+        /* Glassmorphism Ultra-High-Fidelity */
+        .glass-bento {
+            background: rgba(18, 18, 20, 0.6);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
+        }
+        .glass-bento:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Animated Border Beam */
+        @keyframes border-beam {
+            0% { offset-distance: 0%; }
+            100% { offset-distance: 100%; }
+        }
+        .border-beam::after {
+            content: "";
+            position: absolute; inset: -2px;
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #3B82F6, transparent, #3B82F6) 1;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .glass-bento:hover::after { opacity: 0.4; }
+
+        /* Typography Gradients */
+        .text-silver {
+            background: linear-gradient(to bottom, #FFFFFF 0%, #A1A1AA 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+        }
+
+        .glow {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            filter: blur(60px); z-index: -1; pointer-events: none;
+        }
+    </style>
+</head>
+<body class="grid-bg noise antialiased">
+
+    <!-- Hero Back Glows -->
+    <div class="glow top-[-200px] left-[-200px]"></div>
+    <div class="glow bottom-[100px] right-[-200px]" style="background: radial-gradient(circle, rgba(168, 85, 247, 0.05) 0%, transparent 70%);"></div>
+
+    <nav class="fixed top-0 w-full z-50 p-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center glass-bento px-10 py-5">
+            <div class="flex items-center gap-4">
+                <div class="h-10 w-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">M</div>
+                <div class="text-sm font-bold tracking-widest uppercase">Marouani Studio</div>
+            </div>
+            <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+                <a href="#" class="hover:text-white transition-colors">Expertise</a>
+                <a href="#" class="hover:text-white transition-colors">Lac II</a>
+                <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+            <button class="bg-white text-black px-8 py-3 rounded-full text-[12px] font-bold hover:bg-blue-500 hover:text-white transition-all shadow-xl">
+                Prendre RDV
+            </button>
+        </div>
+    </nav>
+
+    <main class="pt-48 pb-32 px-8 max-w-6xl mx-auto">
+        
+        <!-- Bento Master Grid (Linear/Vercel Aesthetic) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 auto-rows-[320px] gap-8">
+            
+            <!-- Hero Card: Dark Futuristic Visual -->
+            <div class="md:col-span-8 md:row-span-2 glass-bento relative flex flex-col justify-end p-16">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=2000" 
+                         class="w-full h-full object-cover opacity-60 grayscale scale-105 group-hover:scale-100 transition-transform duration-1000">
+                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-10">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        </span>
+                        Ouvert aux Berges du Lac II
+                    </div>
+                    <h1 class="text-7xl font-bold text-silver leading-[0.95] mb-10 tracking-tighter">
+                        L'art de la <br> <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">purity dentaire.</span>
+                    </h1>
+                    <p class="text-zinc-400 text-lg max-w-lg font-medium leading-relaxed mb-12">
+                        Le Dr Marouani Malek redéfinit l'excellence chirurgicale par l'omniscience numérique et le confort sensoriel.
+                    </p>
+                    <div class="flex gap-6">
+                        <button class="h-14 px-12 bg-white text-black rounded-2xl font-bold hover:bg-blue-500 hover:text-white transition-all shadow-2xl">Commencer l'expérience</button>
+                        <div class="h-14 w-14 glass-bento flex items-center justify-center text-xl cursor-pointer">🦾</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specialist Card -->
+            <div class="md:col-span-4 md:row-span-1 glass-bento p-12 flex flex-col justify-between">
+                <div class="text-blue-500 text-3xl">✦</div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Chirurgien Dentiste</h3>
+                    <p class="text-zinc-500 text-sm font-medium leading-relaxed">Spécialiste en implantologie robotisée et facettes haute-fidélité.</p>
+                </div>
+            </div>
+
+            <!-- Technology Overlay Card -->
+            <div class="md:col-span-4 md:row-span-1 glass-bento p-12 bg-gradient-to-br from-zinc-900 to-obsidian border-zinc-700/50">
+                <div class="flex justify-between items-start mb-10">
+                    <div class="h-12 w-12 bg-zinc-800 rounded-xl flex items-center justify-center text-2xl font-bold">L2</div>
+                    <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em]">Lac Médical Center</div>
+                </div>
+                <h4 class="text-3xl font-bold text-white mb-4">Innovation Laser.</h4>
+                <p class="text-zinc-400 text-xs uppercase tracking-widest font-bold">Sans douleur / Temps réel</p>
+            </div>
+
+            <!-- Bottom Stats Bento -->
+            <div class="md:col-span-3 md:row-span-1 glass-bento p-12 flex flex-col items-center justify-center text-center">
+                <div class="text-4xl font-bold text-blue-500 mb-2">99.8%</div>
+                <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em]">Taux de Satisfaction</p>
+            </div>
+
+            <div class="md:col-span-12 md:row-span-1 glass-bento relative group flex items-center overflow-hidden">
+                <div class="absolute inset-0 bg-zinc-900 opacity-20"></div>
+                <div class="relative w-full p-16 flex flex-col md:flex-row justify-between items-center gap-12">
+                    <div class="text-left">
+                        <h3 class="text-4xl font-bold text-white mb-3">Prêt pour votre diagnostic ?</h3>
+                        <p class="text-zinc-500 font-medium">Réservez votre séance de simulation 3D gratuite dès aujourd'hui.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="h-16 w-16 glass-bento flex items-center justify-center text-2xl">📞</div>
+                        <div class="px-10 h-16 flex items-center justify-center glass-bento text-xl font-bold">93 586 520</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Master-List Services -->
+        <section class="mt-48">
+            <h2 class="text-5xl font-bold text-silver mb-20 text-center tracking-tighter">L'Elite de l'Implantologie.</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="glass-bento p-12 hover:bg-zinc-900/40 transition-all">
+                    <div class="text-blue-500 text-2xl mb-10 italic">#01</div>
+                    <h3 class="text-2xl font-bold mb-6 text-white">Chirurgie Guidée</h3>
+                    <p class="text-zinc-500 leading-relaxed font-medium">Pose d'implants par navigation assistée par ordinateur pour une cicatrisation foudroyante.</p>
+                </div>
+                <div class="glass-bento p-12 bg-white/5 border-white/20">
+                    <div class="text-blue-500 text-2xl mb-10 italic">#02</div>
+                    <h3 class="text-2xl font-bold mb-6 text-white">Smile Design AI</h3>
+                    <p class="text-zinc-500 leading-relaxed font-medium">Simulation de votre sourire final avant même de commencer les soins esthétiques.</p>
+                </div>
+                <div class="glass-bento p-12 hover:bg-zinc-900/40 transition-all">
+                    <div class="text-blue-500 text-2xl mb-10 italic">#03</div>
+                    <h3 class="text-2xl font-bold mb-6 text-white">Laser Dentaire</h3>
+                    <p class="text-zinc-500 leading-relaxed font-medium">Traitements parodontaux et gingivaux à la pointe de la biotechnologie mondiale.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-48 border-t border-zinc-900 bg-[#0A0A0B] py-32 px-8 overflow-hidden relative">
+        <div class="glow bottom-[-300px] left-[50%] -translate-x-1/2" style="width: 1000px; opacity: 0.1;"></div>
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-24">
+            <div class="max-w-md">
+                <div class="text-2xl font-bold tracking-tighter text-white uppercase mb-8">Marouani Studio</div>
+                <p class="text-zinc-500 leading-relaxed mb-12">L'omniscience médicale au service du sourire humain. Créé par Digital Flux V50 avec Claude Code Elite.</p>
+                <div class="flex gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-600">
+                    <span>Tunis</span> <span>/</span> <span>Paris</span> <span>/</span> <span>Dubaï</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-20">
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-500">Navigation</h5>
+                    <ul class="text-zinc-400 space-y-4 font-bold text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Expertise</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Technologie</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Accès Client</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-500">Legal</h5>
+                    <ul class="text-zinc-400 space-y-4 font-bold text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Confidentialité</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Lex Veritas</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Digital Flux V50</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

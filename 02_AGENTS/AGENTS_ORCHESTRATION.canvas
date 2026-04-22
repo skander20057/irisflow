@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "id": "vortex_engine",
+      "type": "group",
+      "label": "🌀 MOTEUR VORTEX (LE CŒUR)",
+      "x": 0,
+      "y": 0,
+      "width": 500,
+      "height": 500,
+      "color": "5"
+    },
+    {
+      "id": "engine_file",
+      "type": "file",
+      "file": "02_AGENTS/00_MOTEUR_VORTEX/ENGINE_V72_SOUVERAIN/paths.cjs",
+      "x": 100,
+      "y": 150,
+      "width": 300,
+      "height": 200
+    },
+    {
+      "id": "governance_agent",
+      "type": "file",
+      "file": "02_AGENTS/00_GOUVERNANCE/DIAGNOSTIC_SOUVERAIN.md",
+      "x": -600,
+      "y": -200,
+      "width": 350,
+      "height": 250,
+      "color": "2"
+    },
+    {
+      "id": "commercial_agent",
+      "type": "file",
+      "file": "02_AGENTS/02_COMMERCIAL_SALES/BUREAU/CRM_PROSPECTS.md",
+      "x": 600,
+      "y": -200,
+      "width": 350,
+      "height": 250,
+      "color": "4"
+    },
+    {
+      "id": "logs_node",
+      "type": "file",
+      "file": "02_AGENTS/00_TELEMETRIE/v68_final.log",
+      "x": 0,
+      "y": 600,
+      "width": 500,
+      "height": 300,
+      "color": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_gov_vortex",
+      "fromNode": "governance_agent",
+      "fromSide": "right",
+      "toNode": "vortex_engine",
+      "toSide": "left",
+      "label": "Règles",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_vortex_comm",
+      "fromNode": "vortex_engine",
+      "fromSide": "right",
+      "toNode": "commercial_agent",
+      "toSide": "left",
+      "label": "Exécution",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "e_vortex_logs",
+      "fromNode": "vortex_engine",
+      "fromSide": "bottom",
+      "toNode": "logs_node",
+      "toSide": "top",
+      "label": "Télémétrie",
+      "toEnd": "arrow"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "project_name": "Digital Flux Core",
+  "version": "1.0.0",
+  "connection_type": "Supabase PostgreSQL",
+  "sync_strategy": "Direct SQL / Supabase CLI",
+  "agents_access": {
+    "dev_agent": "Read/Write",
+    "business_agent": "Read (Analytics)",
+    "medical_agent": "Read (Compliance)",
+    "rd_agent": "Write (Ideas)"
+  },
+  "notes": "Utilisez le fichier schema.sql pour toute migration de structure."
+}

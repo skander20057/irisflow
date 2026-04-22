@@ -1,0 +1,109 @@
+{
+  "nodes": [
+    {
+      "id": "center_pulse",
+      "type": "file",
+      "file": "01_STRATEGIE/00_PULSE_LIVE.md",
+      "x": 0,
+      "y": 0,
+      "width": 600,
+      "height": 600,
+      "color": "6"
+    },
+    {
+      "id": "strategy_hub",
+      "type": "group",
+      "label": "🧠 STRATÉGIE & COMMANDEMENT",
+      "x": -800,
+      "y": -300,
+      "width": 400,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "strategy_file",
+      "type": "file",
+      "file": "01_STRATEGIE/00_COCKPIT_TACTIQUE/GUIDE_SUPREME_EMPIRE.md",
+      "x": -750,
+      "y": -200,
+      "width": 300,
+      "height": 200
+    },
+    {
+      "id": "agents_hub",
+      "type": "group",
+      "label": "🤖 ARMÉE D'AGENTS (EXECUTIFS)",
+      "x": 800,
+      "y": -300,
+      "width": 400,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "agents_file",
+      "type": "file",
+      "file": "02_AGENTS/00_GOUVERNANCE/DIAGNOSTIC_SOUVERAIN.md",
+      "x": 850,
+      "y": -200,
+      "width": 300,
+      "height": 200
+    },
+    {
+      "id": "projects_hub",
+      "type": "group",
+      "label": "🏗️ CHANTIERS & LIVRABLES",
+      "x": 0,
+      "y": 700,
+      "width": 400,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "crm_file",
+      "type": "file",
+      "file": "02_AGENTS/02_COMMERCIAL_SALES/BUREAU/CRM_PROSPECTS.md",
+      "x": 400,
+      "y": 300,
+      "width": 300,
+      "height": 200
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge1",
+      "fromNode": "strategy_file",
+      "fromSide": "right",
+      "toNode": "center_pulse",
+      "toSide": "left",
+      "label": "Ordres Directs",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "edge2",
+      "fromNode": "agents_file",
+      "fromSide": "left",
+      "toNode": "center_pulse",
+      "toSide": "right",
+      "label": "Rapports d'Activité",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "edge3",
+      "fromNode": "center_pulse",
+      "fromSide": "bottom",
+      "toNode": "projects_hub",
+      "toSide": "top",
+      "label": "Mise à jour Réalité",
+      "toEnd": "arrow"
+    },
+    {
+      "id": "edge4",
+      "fromNode": "crm_file",
+      "fromSide": "left",
+      "toNode": "center_pulse",
+      "toSide": "right",
+      "label": "Flux Prospects",
+      "toEnd": "arrow"
+    }
+  ]
+}

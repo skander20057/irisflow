@@ -1,0 +1,23 @@
+{
+  "agency": "Digital Flux",
+  "founder": "Skander (CEO)",
+  "official_launch_date": "2026-04-16",
+  "current_day": 1,
+  "structure": "Multinational (Pôle-Based) - Expanded",
+  "recruited_team": [
+    { "id": "antigravity", "role": "COO / Master Orchestrator", "pole": "DIRECTION", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "business", "role": "Pôle Director : Growth & CRM", "pole": "BUSINESS", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "medical", "role": "Pôle Director : Regulatory & Domain", "pole": "MEDICAL", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "dev", "role": "Pôle Director : Engineering", "pole": "TECH", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "architect", "role": "Pôle Director : Creative & Systems", "pole": "CREATIF", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "cyber", "role": "Security & Stability Specialist", "pole": "TECH", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "designer", "role": "Premium Visuals Specialist", "pole": "CREATIF", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "copywriter", "role": "Marketing Persuasion Specialist", "pole": "CREATIF", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "sentinel", "role": "Pôle Director : Intelligence", "pole": "INTELLIGENCE", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "synthese", "role": "Reporting & Performance Audit", "pole": "INTELLIGENCE", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "rd", "role": "Pôle Director : R&D", "pole": "RD", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "finance", "role": "Pôle Director : Finance & ROI", "pole": "FINANCE", "recruitment_date": "2026-04-16", "status": "ACTIVE" },
+    { "id": "juridique", "role": "Pôle Director : Contracts & Compliance", "pole": "JURIDIQUE", "recruitment_date": "2026-04-16", "status": "ACTIVE" }
+  ],
+  "constitutional_oath": "Loyalty to the CEO. Zero halluncination. Cross-agent synergy. Recursive evolution. Collective Conscience."
+}

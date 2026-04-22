@@ -1,0 +1,14 @@
+.gemini/
+node_modules/
+.npm_cache/
+.DS_Store
+dist/
+build/
+.next/
+.env
+*.log
+01_STRATEGIE/01_COMMAND_HUB/cloudflared
+02_AGENTS/00_MOTEUR_VORTEX/00_SYS_CONFIG/03_CONFIGURATIONS/stitch.json
+**/configurations/*.json
+**/config/*.json
+**/secrets/*.json

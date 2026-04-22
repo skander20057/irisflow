@@ -1,0 +1,31 @@
+{
+  "currency": {
+    "cash": 0,
+    "total_earned": 0,
+    "currency_symbol": "€"
+  },
+  "levels": {
+    "empire_level": 1,
+    "empire_xp": 0,
+    "next_level_xp": 1000
+  },
+  "poles": {
+    "01": { "name": "DIRECTION", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "02": { "name": "BUSINESS", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "03": { "name": "DESIGN", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "04": { "name": "TECH", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "05": { "name": "MEDICAL", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "06": { "name": "FINANCE", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "07": { "name": "JURIDIQUE", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "08": { "name": "RD", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "09": { "name": "KNOWLEDGE", "level": 1, "xp": 0, "status": "ACTIVE" },
+    "10": { "name": "MONITORING", "level": 1, "xp": 0, "status": "ACTIVE" }
+  },
+  "agents": {
+    "Antigravity": { "role": "DG", "efficiency": 100, "health": 100, "status": "OPTIMAL" }
+  },
+  "metadata": {
+    "last_sync": 1776553466123,
+    "version": "TYCOON_V1.0"
+  }
+}

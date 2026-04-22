@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DIGITAL FLUX | RADAR SOUVERAIN V50.15</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --chrome: #b0b0b0;
+            --chrome-bright: #ffffff;
+            --bg: #030406;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --border: rgba(0, 255, 100, 0.1);
+            --neon-green: #00ff64;
+            --sonar-cyan: #00f2ff;
+            --accent: var(--neon-green);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body { background: var(--bg); color: white; min-height: 100vh; overflow-x: hidden; padding: 2rem; }
+
+        .container { max-width: 1600px; margin: 0 auto; display: grid; grid-template-columns: 1fr 400px; gap: 2rem; }
+
+        /* --- HEADER --- */
+        header { 
+            grid-column: span 2; display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem; background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+        .logo-box { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { width: 40px; height: 40px; background: var(--bg); border: 2px solid var(--neon-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--neon-green); color: var(--neon-green); }
+        .status-badge { padding: 6px 15px; border: 1px solid var(--neon-green); color: var(--neon-green); border-radius: 20px; font-size: 0.7rem; font-weight: 800; }
+
+        /* --- RADAR PARALLÈLE --- */
+        .radar-panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 30px; padding: 2rem; position: relative; overflow: hidden; }
+        .radar-title { font-weight: 800; font-size: 1.2rem; margin-bottom: 2rem; border-left: 4px solid var(--sonar-cyan); padding-left: 15px; color: var(--chrome-bright); }
+        
+        .mission-track { margin-bottom: 2.5rem; position: relative; }
+        .mission-label { font-size: 0.8rem; font-weight: 600; color: var(--chrome); margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .track-line { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; position: relative; margin: 20px 0; }
+        
+        .waypoint { position: absolute; top: 50%; width: 12px; height: 12px; background: #222; border: 2px solid #444; border-radius: 50%; transform: translate(-50%, -50%); transition: all 0.5s; z-index: 2; }
+        .waypoint.active { border-color: var(--neon-green); background: var(--bg); box-shadow: 0 0 10px var(--neon-green); }
+        .waypoint.done { background: var(--neon-green); border-color: var(--neon-green); box-shadow: 0 0 5px var(--neon-green); }
+        .waypoint-label { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-transform: uppercase; white-space: nowrap; }
+        
+        .mission-orb { position: absolute; top: 50%; left: 0%; width: 24px; height: 24px; background: radial-gradient(circle, var(--sonar-cyan), transparent); border: 2px solid var(--sonar-cyan); border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 20px var(--sonar-cyan); transition: left 1s cubic-bezier(0.4, 0, 0.2, 1); z-index: 3; }
+        .mission-orb::after { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 1px solid var(--sonar-cyan); animation: ripple 2s infinite; }
+        @keyframes ripple { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
+
+        /* --- CONSOLE DE DÉCISION --- */
+        .console-panel { background: #000; border: 1px solid var(--border); border-radius: 24px; padding: 1.5rem; display: flex; flex-direction: column; height: 100%; }
+        .console-header { font-weight: 800; font-size: 0.8rem; color: var(--neon-green); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+        .console-header::before { content: ''; width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        
+        .log-feed { flex: 1; overflow-y: auto; font-family: 'Monaco', 'Consolas', monospace; font-size: 0.75rem; color: #aaa; line-height: 1.6; }
+        .log-entry { margin-bottom: 8px; border-left: 2px solid #222; padding-left: 10px; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateX(10px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .log-time { color: var(--sonar-cyan); font-weight: 600; margin-right: 8px; }
+        .log-msg { color: #eee; }
+        .log-agent { color: var(--neon-green); background: rgba(0,255,100,0.05); padding: 1px 4px; border-radius: 3px; margin: 0 5px; }
+
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 255, 100, 0.2); border-radius: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-box">
+            <div class="logo-icon">📡</div>
+            <h1>FLUX SOUVERAIN <span style="color: var(--sonar-cyan)">V50.15</span></h1>
+        </div>
+        <div id="sync-status" class="status-badge">RADAR SYNCHRONISÉ</div>
+    </header>
+
+    <!-- GAUCHE : RADAR PARALLÈLE -->
+    <main class="radar-panel">
+        <h2 class="radar-title">SURVEILLANCE DES FLUX PARALLÈLES</h2>
+        <div id="radar-tracks">
+            <!-- Dynamique -->
+            <div style="text-align: center; color: #444; margin-top: 5rem; font-weight: 600;">EN ATTENTE DE DÉCOLLAGE CEO...</div>
+        </div>
+    </main>
+
+    <!-- DROITE : CONSOLE DE DÉCISION -->
+    <aside class="console-panel">
+        <div class="console-header">DÉCISIONS D'ORCHESTRATION</div>
+        <div class="log-feed" id="log-feed">
+            <!-- Dynamique -->
+        </div>
+    </aside>
+</div>
+
+<script>
+    const API_BASE = "http://localhost:3025/api";
+    const STEPS = ["INGESTION", "DISPATCH", "PRODUCTION", "AUDIT", "LIVRAISON"];
+    let knownMissions = new Set();
+    let audioCtx = null;
+
+    // --- 🔊 SONAR SOUND ENGINE ---
+    function playSonar() {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime); // Mi aigu
+        osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.5);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+    }
+
+    async function syncRadar() {
+        try {
+            const res = await fetch(`${API_BASE}/status`);
+            const data = await res.json();
+            const traces = data.traces || {};
+
+            renderRadar(traces);
+            renderLogs(traces);
+
+            // Détecter les nouvelles étapes pour le son
+            Object.keys(traces).forEach(id => {
+                const lastStep = traces[id].history[traces[id].history.length - 1];
+                const missionKey = id + lastStep.time;
+                if (!knownMissions.has(missionKey)) {
+                    knownMissions.add(missionKey);
+                    if (knownMissions.size > 1) playSonar(); // Ne pas sonner au 1er chargement
+                }
+            });
+
+        } catch (e) {
+            document.getElementById('sync-status').innerText = "DISCONNECTED";
+            document.getElementById('sync-status').style.color = "red";
+            document.getElementById('sync-status').style.borderColor = "red";
+        }
+    }
+
+    function renderRadar(traces) {
+        const container = document.getElementById('radar-tracks');
+        const ids = Object.keys(traces).sort((a,b) => traces[b].metadata.start - traces[a].metadata.start);
+        
+        if (ids.length === 0) return;
+
+        container.innerHTML = ids.map(id => {
+            const history = traces[id].history;
+            const lastStep = history[history.length - 1].step;
+            const stepIdx = STEPS.indexOf(lastStep);
+            const progress = (stepIdx / (STEPS.length - 1)) * 100;
+
+            return `
+                <div class="mission-track">
+                    <div class="mission-label">
+                        <span>🚀 MISSION: ${traces[id].metadata.label}</span>
+                        <span style="color: var(--sonar-cyan)">Étape : ${lastStep}</span>
+                    </div>
+                    <div class="track-line">
+                        ${STEPS.map((s, i) => {
+                            const active = i === stepIdx ? 'active' : '';
+                            const done = i < stepIdx ? 'done' : '';
+                            return `
+                                <div class="waypoint ${active} ${done}" style="left: ${(i/(STEPS.length-1))*100}%">
+                                    <div class="waypoint-label">${s}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                        <div class="mission-orb" style="left: ${progress}%"></div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function renderLogs(traces) {
+        const feed = document.getElementById('log-feed');
+        let allLogs = [];
+        
+        Object.keys(traces).forEach(id => {
+            traces[id].history.forEach(log => {
+                allLogs.push({ ...log, mission: id });
+            });
+        });
+
+        allLogs.sort((a,b) => b.time - a.time); // Plus récent en haut
+        
+        feed.innerHTML = allLogs.slice(0, 50).map(log => `
+            <div class="log-entry">
+                <span class="log-time">${new Date(log.time).toLocaleTimeString()}</span>
+                [<span class="log-agent">${log.agent}</span>]
+                <span class="log-msg">${log.status}</span>
+            </div>
+        `).join('');
+    }
+
+    setInterval(syncRadar, 2000);
+    syncRadar();
+
+    // Init AudioContext on click (Browser requirement)
+    document.addEventListener('click', () => {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }, { once: true });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "digital-flux-agency",
+  "version": "1.0.0",
+  "description": "Système de gestion intelligent Digital Flux",
+  "scripts": {
+    "monitor": "node moteur_technique/database/monitor.js",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.3.1"
+  }
+}

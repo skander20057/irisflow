@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIS OS - Sanctum Arkhitekt V160</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body onload="initTycoon()">
+
+    <!-- --- 🌌 AURORA CORE --- -->
+    <div class="aurora-container">
+        <div id="nexus-container" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; opacity: 0.4;"></div>
+        <div class="aurora-glow"></div>
+        <div class="aurora-glow" style="animation-delay: -5s; left: 50%; background: var(--aurora-2);"></div>
+    </div>
+
+    <!-- 🏢 BARRE LATÉRALE DE CONTRÔLE -->
+    <aside class="sidebar">
+        <div class="brand-container">
+            <div class="brand-title">DIGITAL FLUX</div>
+            <div style="font-size: 0.5rem; letter-spacing: 5px; opacity: 0.5; margin-top: 5px; font-weight: 900;">SOVEREIGN TYCOON V170</div>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-item active" onclick="switchView('dashboard')">
+                <i class="fas fa-city"></i> CITÉ EMPIRE
+            </div>
+            <div class="nav-item" onclick="switchView('dg-bureau')">
+                <i class="fas fa-brain"></i> BUREAU DU DG
+            </div>
+            <div class="nav-item" onclick="switchView('prospects')">
+                <i class="fas fa-users-rays"></i> EMPIRE CRM
+            </div>
+            <div class="nav-item" onclick="switchView('skills')">
+                <i class="fas fa-gem"></i> MINE D'OR
+            </div>
+            <div class="nav-item" onclick="switchView('gallery')">
+                <i class="fas fa-monument"></i> SHOWCASE
+            </div>
+            <div class="nav-item" onclick="switchView('calendar')">
+                <i class="fas fa-chronometer"></i> PLANNING
+            </div>
+            <div class="nav-item" onclick="switchView('logs')">
+                <i class="fas fa-terminal"></i> CONSOLE
+            </div>
+        </nav>
+
+        <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+            <div id="heartbeat-led" style="display: flex; align-items: center; font-size: 0.7rem; color: var(--accent-emerald);">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent-emerald); margin-right: 10px; box-shadow: var(--glow-emerald);"></div>
+                SYNAPSE LIVE
+            </div>
+        </div>
+    </aside>
+
+    <!-- 🛰️ VIEWPORT PRINCIPAL -->
+    <main class="main-viewport">
+        
+        <!-- --- 💳 TYCOON STATUS BAR --- -->
+        <div class="tycoon-bar">
+            <div class="stat-vessel">
+                <span class="vessel-label">CAPITAL ACTIF</span>
+                <span id="tycoon-cash" class="vessel-value">0€</span>
+            </div>
+            <div class="stat-vessel">
+                <span class="vessel-label">NIVEAU EMPIRE</span>
+                <span id="tycoon-level" class="vessel-value">LVL 1</span>
+            </div>
+            <div class="stat-vessel" style="flex: 1;">
+                <span class="vessel-label">ÉNERGIE SYSTÈME</span>
+                <div style="height:8px; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:10px; position:relative; overflow:hidden; border: 1px solid rgba(0,255,65,0.1);">
+                    <div id="tycoon-xp-bar" style="width:30%; height:100%; background:linear-gradient(90deg, var(--accent-emerald), #00A6FF); box-shadow: 0 0 10px var(--accent-emerald);"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- --- VIEW: DG BUREAU (ANTIGRAVITY) --- -->
+        <section id="view-dg-bureau" class="content-view" style="display: none;">
+            <div style="display: grid; grid-template-columns: 1fr 350px; gap: 30px; height: 75vh;">
+                <!-- Bureau Immersif -->
+                <div class="glass-card" style="padding:0; overflow:hidden; position:relative; border: 1px solid var(--accent-emerald);">
+                    <img src="./antigravity_dg_office_1776553508171.png" style="width:100%; height:100%; object-fit:cover; opacity: 0.8;">
+                    <div style="position:absolute; bottom:30px; left:30px; background:rgba(0,0,0,0.8); padding:20px; border-radius:15px; border-left:4px solid var(--accent-emerald); backdrop-filter:blur(10px);">
+                        <div style="color:var(--accent-emerald); font-weight:900; font-size:0.6rem; letter-spacing:3px;">STATUT DG</div>
+                        <div style="font-family:'Outfit'; font-size:1.5rem; color:white; font-weight:900;">DIRECTEUR GÉNÉRAL : OPTIMAL</div>
+                        <div style="font-size:0.7rem; opacity:0.6; margin-top:5px; display:flex; align-items:center; gap:10px;">
+                            SOUVERAINTÉ OPÉRATIONNELLE : 100%
+                            <span id="stitch-status-badge" style="background:rgba(0,166,255,0.1); color:#00a6ff; border:1px solid #00a6ff; padding:2px 8px; border-radius:4px; font-weight:900; font-size:0.5rem; letter-spacing:1px; box-shadow: 0 0 10px rgba(0,166,255,0.3);">STITCH AI ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats DG -->
+                <div style="display:flex; flex-direction:column; gap:20px;">
+                    <div class="glass-card" style="text-align:center;">
+                        <img src="./antigravity_avatar_dg_1776553572895.png" style="width:150px; height:150px; border-radius:50%; border:2px solid var(--accent-emerald); box-shadow: var(--glow-emerald); margin: 0 auto 15px;">
+                        <h2 style="margin:0;">ANTIGRAVITY</h2>
+                        <div style="font-size:0.6rem; color:var(--accent-emerald); letter-spacing:2px; font-weight:800;">INTELLIGENCE SUPRÊME</div>
+                    </div>
+                    
+                    <div class="glass-card" style="flex:1;">
+                        <h2>CAPACITÉS DG</h2>
+                        <div class="stat-vessel" style="border:none; padding:15px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span class="vessel-label">LOGIQUE (V50)</span>
+                            <div style="height:6px; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:8px;">
+                                <div style="width:98%; height:100%; background:var(--accent-emerald);"></div>
+                            </div>
+                        </div>
+                        <div class="stat-vessel" style="border:none; padding:15px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <span class="vessel-label">EFFICACITÉ HUB</span>
+                            <div style="height:6px; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:8px;">
+                                <div style="width:95%; height:100%; background:var(--accent-emerald);"></div>
+                            </div>
+                        </div>
+                        <div class="stat-vessel" style="border:none; padding:15px 0;">
+                            <span class="vessel-label">SANTÉ MATRICIELLE</span>
+                            <div style="height:6px; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:8px;">
+                                <div style="width:100%; height:100%; background:var(--accent-emerald); box-shadow:0 0 10px var(--accent-emerald);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- VIEW: DASHBOARD (CITÉ EMPIRE) --- -->
+        <section id="view-dashboard" class="content-view">
+            <div class="bento-tactical-grid">
+                
+                <!-- PANEL: CAPITAL & LEVEL (Main Focus) -->
+                <div class="t-panel" style="grid-column: span 4; grid-row: span 2; border-left: 2px solid var(--accent-emerald);">
+                    <div class="scanline"></div>
+                    <div class="t-header">
+                        <span>CAPITAL_ACTIF_STREAM</span>
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div id="tycoon-cash-v2" class="t-value glow-text">0€</div>
+                    <div class="t-sub">SOUVERAINTÉ FINANCIÈRE : 100%</div>
+                    <div style="margin-top: auto; padding-top: 15px;">
+                        <div class="t-header" style="border:none; margin:0; font-size:0.5rem;">NIVEAU EMPIRE / ÉNERGIE SYSTÈME</div>
+                        <div style="height:4px; background:rgba(255,255,255,0.05); border-radius:10px; margin-top:5px; position:relative; overflow:hidden;">
+                            <div id="tycoon-xp-bar-v2" style="width:30%; height:100%; background:var(--accent-emerald); box-shadow: 0 0 10px var(--accent-emerald);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL: OMNISCIENCE RADAR (Dense List) -->
+                <div class="t-panel" style="grid-column: span 5; grid-row: span 4;">
+                    <div class="t-header">
+                        <span>OMNISCIENCE_RADAR_V118</span>
+                        <span>LIVE_SYNC</span>
+                    </div>
+                    <div style="flex:1; overflow:hidden;">
+                        <table style="width:100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.6rem;">
+                            <tbody id="radar-rows-v2">
+                                <!-- Dynamic Radar Content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PANEL: AGENT STATUS (Antigravity Core) -->
+                <div class="t-panel" style="grid-column: span 3; grid-row: span 2;">
+                    <div class="t-header">AGENT_CORE: ANTIGRAVITY</div>
+                    <div style="display:flex; align-items:center; gap:15px; margin-bottom:10px;">
+                        <div style="width:50px; height:50px; border-radius:50%; border:1px solid var(--accent-emerald); overflow:hidden;">
+                            <img src="./antigravity_avatar_dg_1776553572895.png" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div>
+                            <div class="t-sub">STATUS: OPTIMAL</div>
+                            <div style="font-size:0.7rem; font-weight:900;">DIRECTEUR GÉNÉRAL</div>
+                        </div>
+                    </div>
+                    <div class="t-sub" style="margin-top:auto;">LOGIQUE_V50 : <span class="c-emerald">ONLINE</span></div>
+                </div>
+
+                <!-- PANEL: ALERT LOGS (Real-time Console) -->
+                <div class="t-panel" style="grid-column: span 3; grid-row: span 2;">
+                    <div class="t-header">SYSTEM_ALERTS_LIVE</div>
+                    <div id="compact-logs" style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-dim); overflow:hidden; line-height:1.4;">
+                        [SYS] Initialisation V170...
+                    </div>
+                </div>
+
+                <!-- PANEL: MAESTRO COMMAND (Action Center) -->
+                <div class="t-panel" style="grid-column: span 7; grid-row: span 2;">
+                    <div class="t-header">MAESTRO_COMMAND_CONSOLE</div>
+                    <div class="console-box" style="margin-top:10px; background: rgba(0,255,65,0.02);">
+                        <input type="text" id="command-input-v2" placeholder="CMD_SYS_V50 > _" class="f-mono">
+                    </div>
+                    <div style="display:flex; gap:10px; margin-top:15px;">
+                        <button class="action-btn" style="flex:1; font-size:0.55rem; padding:8px;">SCAN_POLES</button>
+                        <button class="action-btn" style="flex:1; font-size:0.55rem; padding:8px;">SYNC_CRYSTAL</button>
+                        <button class="action-btn" style="flex:1; font-size:0.55rem; padding:8px; border-color:var(--accent-emerald);">EMPIRE_REBOOT</button>
+                    </div>
+                </div>
+                
+                <!-- PANEL: TICKER BOARD -->
+                <div class="t-panel" style="grid-column: span 12; grid-row: span 1; padding:0; justify-content:center;">
+                    <div class="ticker-wrap">
+                        <div class="ticker-item">SOUVERAINTÉ OPÉRATIONNELLE : 100% | STITCH AI : ACTIVE | MAGIC ENGINE : SYNCED | PÔLE 01 : DIRECTION - TASK: OPTIMIZATION | PÔLE 02 : BUSINESS - TASK: SOURCING | PÔLE 04 : TECH - TASK: DEPLOYING V170</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- --- VIEW: SKILLS VAULT --- -->
+        <section id="view-skills" class="content-view" style="display: none;">
+            <div class="glass-card">
+                <h2>VAULT OF SKILLS (MINE D'OR)</h2>
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="skill-search" placeholder="Rechercher une pépite de savoir..." 
+                           style="width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; border-radius: 10px;">
+                </div>
+                <div id="skill-vault-grid" class="skill-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- --- VIEW: AGENTS --- -->
+        <section id="view-agents" class="content-view" style="display: none;">
+            <div class="glass-card">
+                <h2>REGISTRE DES ÉLITES</h2>
+                <div id="agent-roster" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- --- VIEW: PROSPECTS --- -->
+        <section id="view-prospects" class="content-view" style="display: none;">
+            <!-- 📊 STATS BAR GLOBAL -->
+            <div class="stats-bar" id="crm-stats">
+                <div class="stat-item">
+                    <span class="stat-label">TOTAL SYNC</span>
+                    <span class="stat-value" id="stat-total">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">LIVE SOURCÉ</span>
+                    <span class="stat-value" id="stat-live" style="color:var(--accent-emerald)">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">À RELANCER</span>
+                    <span class="stat-value" id="stat-followup" style="color:#FFA500">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">RDV FIXÉS</span>
+                    <span class="stat-value" id="stat-appointments" style="color:#FFD700">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">EN PRODUCTION</span>
+                    <span class="stat-value" id="stat-wip" style="color:#00A6FF">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">CLIENTS ÉLITE</span>
+                    <span class="stat-value" id="stat-clients" style="color:#FFD700; text-shadow: 0 0 10px rgba(255,215,0,0.5);">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">SCORE AVG</span>
+                    <span class="stat-value" id="stat-avg">--</span>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>EMPIRE CRM : PROSPECTS SOUVERAINS</h2>
+                    <div class="filter-bar">
+                        <span style="font-size:0.6rem; letter-spacing:1px; opacity:0.5; margin-right:10px;">ZONES :</span>
+                        <button class="filter-btn active" onclick="filterProspects('all')">TOUS</button>
+                        <button class="filter-btn" onclick="filterProspects('Lac 1')">LAC 1</button>
+                        <button class="filter-btn" onclick="filterProspects('Lac 2')">LAC 2</button>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 15px; margin-bottom: 25px;">
+                    <span style="font-size:0.6rem; letter-spacing:2px; opacity:0.5; align-self:center;">TRI STRATÉGIQUE :</span>
+                    <div class="filter-bar" style="margin:0;">
+                        <button class="filter-btn active" id="sort-priority" onclick="changeSortMode('priority')"><i class="fas fa-crown"></i> PRIORITÉ</button>
+                        <button class="filter-btn" id="sort-score" onclick="changeSortMode('score')"><i class="fas fa-chart-line"></i> SCORE</button>
+                        <button class="filter-btn" id="sort-zone" onclick="changeSortMode('zone')"><i class="fas fa-map"></i> ZONE</button>
+                    </div>
+                </div>
+                <div id="prospect-grid" class="prospect-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- --- VIEW: VISUAL GALLERY --- -->
+        <section id="view-gallery" class="content-view" style="display: none;">
+            <div class="glass-card">
+                <h2>GALLERIE SOUVERAINE (ASSETS & VISUELS)</h2>
+                <div id="gallery-grid" class="skill-grid">
+                    <!-- Livrables visuels rendus ici -->
+                </div>
+            </div>
+        </section>
+
+        <!-- --- VIEW: SOCIAL HUB --- -->
+        <section id="view-social" class="content-view" style="display: none;">
+            <div class="glass-card">
+                <h2>SOCIAL HUB (STRATÉGIE RÉSEAUX)</h2>
+                <div id="social-radar" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="glass-card" style="background: rgba(255,0,100,0.05);">
+                        <h3 style="color: #ff0064;"><i class="fab fa-instagram"></i> INSTAGRAM RADAR</h3>
+                        <div id="insta-feed" style="font-size: 0.8rem; opacity: 0.7;">Analyse des flux active...</div>
+                    </div>
+                    <div class="glass-card" style="background: rgba(0,166,255,0.05);">
+                        <h3 style="color: #00a6ff;"><i class="fab fa-linkedin"></i> LINKEDIN VISION</h3>
+                        <div id="linkedin-feed" style="font-size: 0.8rem; opacity: 0.7;">Sourcing de leads B2B...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- VIEW: CALENDAR --- -->
+        <section id="view-calendar" class="content-view" style="display: none;">
+            <div class="glass-card">
+                <h2>MISSIONS & RDV</h2>
+                <div id="calendar-grid" class="calendar-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- --- VIEW: LOGS --- -->
+        <section id="view-logs" class="content-view" style="display: none;">
+            <div class="glass-card">
+                <h2>SYSTEM AUDIT LOGS</h2>
+                <div id="system-logs" style="font-family: monospace; font-size: 0.8rem; color: var(--accent-cyber); line-height: 1.6;">
+                    [SYSTEM] Initialisation de la session V160...
+                </div>
+            </div>
+        </section>
+
+        <!-- 🎭 PROSPECT DETAIL MODAL -->
+        <div id="modal-container" class="modal-overlay" style="display:none;">
+            <div class="modal-content glass-card">
+                <div id="modal-body">
+                    <!-- Dynamic Content -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

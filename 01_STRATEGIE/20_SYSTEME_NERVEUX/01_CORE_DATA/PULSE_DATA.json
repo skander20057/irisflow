@@ -1,0 +1,44 @@
+{
+  "AGENT_DESIGNER": {
+    "status": "ACTIVE",
+    "mission": "MISSION_LOGO_MARWAN",
+    "skill_id": "implementation-playbook",
+    "current_action": "Exécution Mission",
+    "last_ping": 1776454752953
+  },
+  "AGENT_RD": {
+    "status": "ACTIVE",
+    "mission": "MISSION_EVOLUTION_ULTIME_V140",
+    "skill_id": "tech-innovation",
+    "current_action": "Exécution Mission",
+    "last_ping": 1776453871882
+  },
+  "AGENT_ARCHITECT": {
+    "status": "ACTIVE",
+    "mission": "CMD_1776458941572",
+    "skill_id": "architecture-overview",
+    "current_action": "Exécution Mission",
+    "last_ping": 1776458944835
+  },
+  "AGENT_MEDICAL": {
+    "status": "ACTIVE",
+    "mission": "MISSION_LOGO_MARWAN",
+    "skill_id": "routing-and-controllers",
+    "current_action": "Exécution Mission",
+    "last_ping": 1776454753714
+  },
+  "AGENT_DEV": {
+    "status": "ACTIVE",
+    "mission": "MISSION_SITE_ALFA",
+    "skill_id": "tech-stack",
+    "current_action": "Exécution Mission",
+    "last_ping": 1776455866076
+  },
+  "AGENT_BUSINESS": {
+    "status": "ACTIVE",
+    "mission": "CMD_1776458941572",
+    "skill_id": "SKILL-GENERAL-SOP",
+    "current_action": "Exécution Mission",
+    "last_ping": 1776458944084
+  }
+}
