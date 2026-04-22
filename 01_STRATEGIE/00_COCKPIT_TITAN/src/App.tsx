@@ -164,50 +164,138 @@ const VortexGraph: React.FC<{ hierarchy: any }> = ({ hierarchy }) => {
 };
 
 // --- MAIN APP: IRIS OS TITAN ---
+// --- COMPOSANT LOGIN SOUVERAIN ---
+const LoginScreen: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
+  const [code, setCode] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (code === 'IRIS2026') { // Code d'accès par défaut, à changer via ENV
+      onLogin();
+    } else {
+      setError(true);
+      setTimeout(() => setError(false), 1000);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-[#020617] flex items-center justify-center z-[1000]">
+      <div className="absolute inset-0 bg-radial-gradient from-emerald-500/10 to-transparent pointer-events-none" />
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass p-8 rounded-3xl border border-slate-800 w-[350px] text-center">
+        <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center glow-emerald mx-auto mb-6">
+          <Shield className="text-emerald-500" size={32} />
+        </div>
+        <h2 className="text-xl font-black mb-2 uppercase tracking-widest">IRIS <span className="text-emerald-500">TITAN</span></h2>
+        <p className="text-xs text-slate-500 mb-8 font-bold uppercase tracking-tight">Accès Sécurisé Souverain</p>
+        
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input 
+            type="password" 
+            placeholder="CODE D'ACCÈS" 
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            className={cn(
+              "bg-slate-900 border rounded-xl px-4 py-3 text-center font-bold tracking-[0.5em] outline-none transition-all",
+              error ? "border-red-500 animate-shake" : "border-slate-800 focus:border-emerald-500/50"
+            )}
+          />
+          <button type="submit" className="bg-emerald-500 text-[#020617] font-black py-3 rounded-xl hover:bg-emerald-400 transition-all uppercase tracking-widest text-sm">
+            Authentifier
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  );
+};
+
+// --- MAIN APP: IRIS OS TITAN ---
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => localStorage.getItem('iris_auth') === 'true');
   const [activeTab, setActiveTab] = useState('vortex');
   const [hierarchy, setHierarchy] = useState<any>(null);
-  const [prospects, setProspects] = useState<Prospect[]>([]);
+  const [prospects, setProspects] = useState<Prospect[]>(() => {
+    const cached = localStorage.getItem('iris_prospects');
+    return cached ? JSON.parse(cached) : [];
+  });
   const [missions, setMissions] = useState<Mission[]>([]);
   const [logs, setLogs] = useState<any[]>([]);
   const [selectedProspect, setSelectedProspect] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
-    fetchData();
-    const sse = new EventSource('/api/stream');
-    sse.addEventListener('pulse', (e) => setLogs(prev => [JSON.parse(e.data), ...prev].slice(0, 20)));
-    return () => sse.close();
-  }, []);
+    // Enregistrement du Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(() => {
+        console.log("🛠️ IRIS PWA : Service Worker Actif");
+      });
+    }
+
+    if (isAuthenticated) {
+      fetchData();
+      const sse = new EventSource('/api/stream');
+      sse.addEventListener('pulse', (e) => setLogs(prev => [JSON.parse(e.data), ...prev].slice(0, 20)));
+      return () => sse.close();
+    }
+  }, [isAuthenticated]);
 
   const fetchData = async () => {
     try {
       const [h, p, m] = await Promise.all([
-        fetch('/api/v1/hierarchy').then(r => r.json()),
-        fetch('/api/v1/prospects').then(r => r.json()),
-        fetch('/api/v1/missions').then(r => r.json())
+        fetch('/api/v1/hierarchy').then(r => r.json()).catch(() => null),
+        fetch('/api/v1/prospects').then(r => r.json()).catch(() => prospects),
+        fetch('/api/v1/missions').then(r => r.json()).catch(() => [])
       ]);
-      setHierarchy(h); setProspects(p); setMissions(m);
+      if (h) setHierarchy(h);
+      if (p) {
+        setProspects(p);
+        localStorage.setItem('iris_prospects', JSON.stringify(p));
+      }
+      setMissions(m);
     } catch (e) { console.error("Sync Error", e); }
   };
 
   const updateStatus = async (name: string, newStatus: string) => {
-    await fetch('/api/v1/prospects/update', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, newStatus })
-    });
-    fetchData();
+    // Update local state for immediate feedback
+    const updatedProspects = prospects.map(p => p.name === name ? { ...p, funnel: newStatus } : p);
+    setProspects(updatedProspects);
+    localStorage.setItem('iris_prospects', JSON.stringify(updatedProspects));
+
+    try {
+      await fetch('/api/v1/prospects/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, newStatus })
+      });
+      fetchData();
+    } catch (e) { 
+      console.warn("Offline: Changement sauvegardé localement.");
+      // Optionnel: Stocker les modifications en attente pour synchro future
+    }
   };
 
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('iris_auth', 'true');
+  };
+
+  if (!isAuthenticated) return <LoginScreen onLogin={handleLogin} />;
+
   return (
-    <div className="flex h-screen bg-[#020617] text-slate-200 font-['Outfit'] overflow-hidden">
-      {/* SIDEBAR TACTIQUE */}
-      <aside className="w-20 lg:w-64 border-r border-slate-800/50 glass flex flex-col items-center lg:items-start p-4 gap-8 z-50">
-        <div className="flex items-center gap-3 px-2">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center glow-emerald">
-            <Network className="text-emerald-500" />
+    <div className="flex h-screen bg-[#020617] text-slate-200 font-['Outfit'] overflow-hidden relative">
+      {/* SIDEBAR TACTIQUE (Mobile Responsive) */}
+      <aside className={cn(
+        "fixed lg:relative inset-y-0 left-0 w-64 border-r border-slate-800/50 glass flex flex-col p-4 gap-8 z-[100] transition-transform duration-300 lg:translate-x-0",
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        <div className="flex items-center justify-between px-2">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center glow-emerald">
+              <Network className="text-emerald-500" />
+            </div>
+            <h1 className="text-xl font-black tracking-tighter">IRIS <span className="text-emerald-500">TITAN</span></h1>
           </div>
-          <h1 className="hidden lg:block text-xl font-black tracking-tighter">IRIS <span className="text-emerald-500">TITAN</span></h1>
+          <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 text-slate-500"><X /></button>
         </div>
 
         <nav className="flex flex-col gap-2 w-full">
@@ -219,14 +307,14 @@ const App: React.FC = () => {
           ].map(item => (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => { setActiveTab(item.id); setIsSidebarOpen(false); }}
               className={cn(
                 "flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300",
                 activeTab === item.id ? "bg-emerald-500/10 text-emerald-500" : "hover:bg-slate-800/50 text-slate-400"
               )}
             >
               <item.icon size={20} />
-              <span className="hidden lg:block font-bold text-sm tracking-wide">{item.label}</span>
+              <span className="font-bold text-sm tracking-wide">{item.label}</span>
             </button>
           ))}
         </nav>
@@ -234,7 +322,7 @@ const App: React.FC = () => {
         <div className="mt-auto w-full px-2">
             <button className="flex items-center gap-4 text-slate-500 hover:text-red-400 transition-colors">
                 <Shield size={20} />
-                <span className="hidden lg:block text-xs font-bold uppercase tracking-widest">PURGE SYSTÈME</span>
+                <span className="text-xs font-bold uppercase tracking-widest">PURGE SYSTÈME</span>
             </button>
         </div>
       </aside>
@@ -242,27 +330,31 @@ const App: React.FC = () => {
       {/* MAIN VIEWPORT */}
       <main className="flex-1 relative overflow-hidden flex flex-col">
         {/* TOP BAR */}
-        <header className="h-20 border-b border-slate-800/50 flex items-center justify-between px-8 glass">
-          <div className="flex flex-col">
-            <span className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.3em]">Operational Status</span>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-sm font-bold tracking-tight">SOUVERAINETÉ ACTIVE — V74.0.0</span>
+        <header className="h-20 border-b border-slate-800/50 flex items-center justify-between px-4 lg:px-8 glass shrink-0">
+          <div className="flex items-center gap-4">
+            <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-2 text-slate-300 bg-slate-800/50 rounded-xl"><Menu /></button>
+            <div className="flex flex-col">
+              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.3em]">Operational Status</span>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-sm font-bold tracking-tight hidden sm:inline">SOUVERAINETÉ ACTIVE — V400</span>
+                <span className="text-sm font-bold tracking-tight sm:hidden text-emerald-500">LIVE</span>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="relative">
+          <div className="flex items-center gap-2 lg:gap-4">
+            <div className="relative hidden md:block">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
-              <input className="bg-slate-900/50 border border-slate-700/50 rounded-full pl-10 pr-4 py-2 text-xs w-64 focus:border-emerald-500/50 outline-none transition-all" placeholder="Rechercher Agent ou Prospect..." />
+              <input className="bg-slate-900/50 border border-slate-700/50 rounded-full pl-10 pr-4 py-2 text-xs w-48 lg:w-64 focus:border-emerald-500/50 outline-none transition-all" placeholder="Rechercher..." />
             </div>
             <button className="w-10 h-10 rounded-full border border-slate-700/50 flex items-center justify-center hover:bg-slate-800 transition-colors"><User size={20} /></button>
           </div>
         </header>
 
-        <section className="flex-1 overflow-hidden p-8">
+        <section className="flex-1 overflow-y-auto lg:overflow-hidden p-4 lg:p-8">
           <AnimatePresence mode="wait">
             {activeTab === 'vortex' && (
-              <motion.div key="vortex" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} className="h-full flex items-center justify-center relative">
+              <motion.div key="vortex" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} className="h-full flex items-center justify-center relative min-h-[400px]">
                 <div className="absolute inset-0 bg-radial-gradient from-emerald-500/5 to-transparent pointer-events-none" />
                 <VortexGraph hierarchy={hierarchy} />
               </motion.div>
@@ -270,23 +362,23 @@ const App: React.FC = () => {
 
             {activeTab === 'crm' && (
               <motion.div key="crm" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="h-full flex flex-col gap-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
                   {[
-                    { label: 'TOTAL PROSPECTS', value: prospects.length, color: 'emerald' },
-                    { label: 'RDV FIXÉS', value: prospects.filter(p => p.funnel.includes('RDV')).length, color: 'gold' },
-                    { label: 'CLIENTS SCÉLLÉS', value: prospects.filter(p => p.funnel.includes('CLIENT')).length, color: 'royal' },
-                    { label: 'FLUX LIVE', value: 'ACTIVE', color: 'emerald' }
+                    { label: 'PROSPECTS', value: prospects.length, color: 'emerald' },
+                    { label: 'RDV', value: prospects.filter(p => p.funnel.includes('RDV')).length, color: 'gold' },
+                    { label: 'CLIENTS', value: prospects.filter(p => p.funnel.includes('CLIENT')).length, color: 'royal' },
+                    { label: 'FLUX', value: 'LIVE', color: 'emerald' }
                   ].map((kpi, i) => (
-                    <div key={i} className="glass p-6 rounded-2xl border-l-4 border-emerald-500">
+                    <div key={i} className="glass p-4 lg:p-6 rounded-2xl border-l-4 border-emerald-500">
                       <h4 className="text-[10px] text-slate-500 font-black tracking-widest uppercase mb-1">{kpi.label}</h4>
-                      <p className="text-2xl font-black">{kpi.value}</p>
+                      <p className="text-xl lg:text-2xl font-black">{kpi.value}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex-1 glass rounded-3xl overflow-hidden flex">
-                  <div className="flex-1 overflow-y-auto custom-scroll">
-                    <table className="w-full text-left">
+                <div className="flex-1 glass rounded-3xl overflow-hidden flex flex-col min-h-[500px]">
+                  <div className="flex-1 overflow-x-auto lg:overflow-y-auto custom-scroll">
+                    <table className="w-full text-left min-w-[600px]">
                       <thead className="sticky top-0 bg-[#0a0f19] z-10 border-b border-slate-800">
                         <tr>
                           <th className="p-4 text-[10px] font-black tracking-widest text-emerald-500 uppercase">PROSPECT</th>
@@ -305,7 +397,7 @@ const App: React.FC = () => {
                               <select 
                                 value={p.funnel} 
                                 onChange={e => updateStatus(p.name, e.target.value)}
-                                className="bg-transparent border-none text-xs font-bold focus:outline-none text-slate-300"
+                                className="bg-transparent border-none text-xs font-bold focus:outline-none text-slate-300 cursor-pointer"
                               >
                                 <option value="🛡️ SOURCÉ">🛡️ SOURCÉ</option>
                                 <option value="🤝 RDV FIXÉ">🤝 RDV FIXÉ</option>
@@ -324,7 +416,7 @@ const App: React.FC = () => {
             {activeTab === 'missions' && (
               <motion.div key="missions" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="h-full flex flex-col gap-6">
                  {missions.map((m, i) => (
-                   <div key={i} className="glass p-6 rounded-2xl flex items-center justify-between group">
+                   <div key={i} className="glass p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                       <div className="flex gap-4 items-center">
                         <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center font-black">{m.agent[0]}</div>
                         <div>
@@ -332,7 +424,7 @@ const App: React.FC = () => {
                           <p className="text-xs text-slate-500">Agent: {m.agent} — {m.date}</p>
                         </div>
                       </div>
-                      <div className="w-64">
+                      <div className="w-full sm:w-64">
                          <div className="flex justify-between mb-2 text-[10px] font-black uppercase tracking-widest text-slate-500">
                            <span>Progress</span>
                            <span>{m.progress}</span>
@@ -348,8 +440,8 @@ const App: React.FC = () => {
           </AnimatePresence>
         </section>
 
-        {/* LOGS LIVE TERMINAL */}
-        <footer className="h-24 glass border-t border-slate-800/50 p-4 overflow-y-auto font-mono text-[10px]">
+        {/* LOGS LIVE TERMINAL (Hidden on small mobile) */}
+        <footer className="h-24 glass border-t border-slate-800/50 p-4 overflow-y-auto font-mono text-[10px] hidden sm:block">
            {logs.map((l, i) => (
              <div key={i} className="flex gap-2">
                <span className="text-emerald-500">[{l.category}]</span>
@@ -359,18 +451,18 @@ const App: React.FC = () => {
         </footer>
       </main>
 
-      {/* INSPECTEUR IMPÉRIAL 2.0 (SIDE OVER) */}
+      {/* INSPECTEUR IMPÉRIAL 2.0 (Mobile Adaptive) */}
       <AnimatePresence>
         {selectedProspect && (
           <motion.div 
             initial={{ x: '100%' }} 
             animate={{ x: 0 }} 
             exit={{ x: '100%' }}
-            className="fixed top-0 right-0 w-[500px] h-full bg-[#0a0f19] border-l border-slate-800 glass z-[100] p-8 shadow-2xl"
+            className="fixed top-0 right-0 w-full sm:w-[500px] h-full bg-[#0a0f19] border-l border-slate-800 glass z-[200] p-6 lg:p-8 shadow-2xl"
           >
             <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-black">{selectedProspect}</h2>
-              <button onClick={() => setSelectedProspect(null)} className="p-2 hover:bg-slate-800 rounded-full transition-colors"><X size={20} /></button>
+              <h2 className="text-xl lg:text-2xl font-black">{selectedProspect}</h2>
+              <button onClick={() => setSelectedProspect(null)} className="p-2 hover:bg-slate-800 rounded-full transition-colors text-slate-400"><X size={24} /></button>
             </div>
             <div className="flex flex-col gap-6">
               <div className="p-6 bg-slate-900/50 rounded-2xl border border-slate-800">
@@ -382,10 +474,10 @@ const App: React.FC = () => {
                   <div className="font-bold">FRANCE / IDF</div>
                 </div>
               </div>
-              <div className="p-6 bg-slate-900/50 rounded-2xl border border-slate-800 flex-1 overflow-y-auto">
+              <div className="p-6 bg-slate-900/50 rounded-2xl border border-slate-800 flex-1 overflow-y-auto min-h-[300px]">
                  <h4 className="text-xs font-black text-emerald-500 uppercase tracking-widest mb-4">Historique Synaptique</h4>
                  <p className="text-sm text-slate-400 leading-relaxed italic">
-                    "Chargement des archives impériales... Le dossier prospect est en cours de synchronisation avec le registre central. Toutes les données commerciales sont scellées et souveraines."
+                    "Données chargées depuis le cache souverain. Les archives sont prêtes pour consultation hors-ligne."
                  </p>
               </div>
             </div>
