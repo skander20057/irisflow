@@ -12,7 +12,7 @@ try {
     process.exit(1);
 }
 
-const PORT = CONFIG.SERVER_PORT || 3333;
+const PORT = process.env.PORT || CONFIG.SERVER_PORT || 3333;
 const ROOT_DIR = path.resolve(__dirname, '..', '..');
 
 // --- SSE BROADCASTER ---
@@ -443,6 +443,9 @@ const server = http.createServer((req, res) => {
     }
 
     else if (req.url.startsWith('/api/v1/telemetry/status') && req.method === 'GET') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ status: "ACTIVE", uptime: process.uptime() }));
+    }
 
     else if (req.url.startsWith('/api/v1/telemetry/logs') && req.method === 'GET') {
         const logsPath = path.join(ROOT_DIR, '02_AGENTS/00_TELEMETRIE/agent_logs.txt');
@@ -469,7 +472,7 @@ const server = http.createServer((req, res) => {
     else { res.writeHead(404); res.end("Route Not Found"); }
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 [IRIS V80.9] SOVEREIGN CORE ACTIVE ON IPv4 (0.0.0.0:${PORT})`);
+server.listen(PORT, '127.0.0.1', () => {
+    console.log(`🚀 [IRIS V80.9] SOVEREIGN CORE ACTIVE ON http://localhost:${PORT}`);
     logPulse('🚀 SYSTEM', 'SERVER_START', 'IRIS V80.9 Hardened Deployment successful');
 });
