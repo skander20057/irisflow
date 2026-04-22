@@ -3,6 +3,9 @@
   "rewrites": [
     { "source": "/api/v1/prospects", "destination": "/api/v1/prospects" },
     { "source": "/api/v1/agents", "destination": "/api/v1/agents" },
+    { "source": "/api/v1/missions", "destination": "/api/v1/missions" },
+    { "source": "/api/v1/projets", "destination": "/api/v1/projets" },
+    { "source": "/api/v1/appointments", "destination": "/api/v1/appointments" },
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }
