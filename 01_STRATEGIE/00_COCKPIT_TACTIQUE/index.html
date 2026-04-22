@@ -85,6 +85,37 @@
     <canvas id="vortex-canvas"></canvas>
     <div id="toast-container"></div>
 
+    <!-- LOGIN SOUVERAIN (V400) -->
+    <div id="login-overlay" class="fixed inset-0 bg-[#020617] flex items-center justify-center z-[1000]">
+        <div class="absolute inset-0 bg-radial-gradient from-emerald-500/10 to-transparent pointer-events-none"></div>
+        <div class="glass p-8 rounded-3xl border border-slate-800 w-[350px] text-center relative z-10">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                <span class="text-3xl">🛡️</span>
+            </div>
+            <h2 class="text-xl font-black mb-2 uppercase tracking-widest">IRIS <span class="text-cyan-400">TITAN</span></h2>
+            <p class="text-[9px] text-slate-500 mb-8 font-black uppercase tracking-widest">Accès Sécurisé Souverain</p>
+            <input type="password" id="login-code" placeholder="CODE D'ACCÈS" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-center font-bold tracking-[0.5em] outline-none focus:border-cyan-500/50 transition-all mb-4">
+            <button onclick="checkLogin()" class="w-full bg-cyan-500 text-[#020617] font-black py-3 rounded-xl hover:bg-cyan-400 transition-all uppercase tracking-widest text-xs">Authentifier</button>
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const code = document.getElementById('login-code').value;
+            if (code === 'IRIS2026') {
+                document.getElementById('login-overlay').style.display = 'none';
+                localStorage.setItem('iris_auth_v80', 'true');
+            } else {
+                const input = document.getElementById('login-code');
+                input.style.borderColor = '#f43f5e';
+                setTimeout(() => input.style.borderColor = '#1e293b', 1000);
+            }
+        }
+        if (localStorage.getItem('iris_auth_v80') === 'true') {
+            document.getElementById('login-overlay').style.display = 'none';
+        }
+    </script>
+
     <div id="menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden" onclick="toggleSidebar()"></div>
 
     <div id="app" class="flex h-screen w-full relative z-10 flex-col md:flex-row pb-20 md:pb-0">
