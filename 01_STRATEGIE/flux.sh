@@ -14,4 +14,6 @@ if [ -z "$LATEST_CORE" ]; then
 fi
 
 echo "🧬 Noyau détecté : $(basename "$LATEST_CORE")"
+echo "🚀 [IRIS V80.9] SOVEREIGN CORE ACTIVE ON http://localhost:3333"
+open "http://localhost:3333"
 node "$LATEST_CORE"

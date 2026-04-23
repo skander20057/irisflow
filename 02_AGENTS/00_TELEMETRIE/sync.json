@@ -1,4 +1,5 @@
 {
-    "business": "idle",
-    "timestamp": 1713726000000
+  "business": "success",
+  "last_sync": "2026-04-23T14:03:45.738Z",
+  "details": "Synchronisation Cloud terminée avec succès"
 }

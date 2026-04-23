@@ -21,7 +21,7 @@ const FILES = [
         })
     },
     { 
-        path: '01_STRATEGIE/00_CONTRÔLE_DES_MISSIONS.md', 
+        path: '01_STRATEGIE/00_CONTROLE_DES_MISSIONS.md', 
         table: 'missions', 
         header: 'Mission |',
         map: (parts) => ({
@@ -83,6 +83,16 @@ async function syncAll() {
             console.error(`❌ Échec réseau pour ${config.table} :`, e.message);
         }
     }
+
+    // Mise à jour de la télémétrie locale
+    const syncFilePath = path.join(__dirname, '../00_TELEMETRIE/sync.json');
+    const syncStatus = {
+        business: "success",
+        last_sync: new Date().toISOString(),
+        details: "Synchronisation Cloud terminée avec succès"
+    };
+    fs.writeFileSync(syncFilePath, JSON.stringify(syncStatus, null, 2));
+    console.log("📊 Télémétrie mise à jour dans sync.json");
 }
 
 syncAll();

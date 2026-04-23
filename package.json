@@ -1,8 +1,0 @@
-{
-  "name": "digital-flux-empire",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "bash flux.sh",
-    "sync": "node 02_AGENTS/00_MOTEUR_VORTEX/sync_to_supabase.js && git add . && git commit -m '🚀 Sync Souveraine : Code + Données' && git push origin main && echo '🚀 Déploiement réussi : GitHub à jour, Vercel en cours de build, Supabase synchronisé.'"
-  }
-}

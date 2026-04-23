@@ -1,0 +1,9 @@
+L'ancien alias flux fonctionne toujours (il pointe sur flux.sh), mais j'ai ajouté une option encore plus propre dans votre nouveau système.
+
+Désormais, tout est centralisé sous npm :
+
+npm run dev : C'est le nouveau flux. Cela allume votre tableau de bord local sur le port 3333 pour que vous puissiez travailler sur votre PC.
+npm run sync : C'veut dire "Envoie tout sur mon iPhone". Cela synchronise vos données vers Supabase et votre code vers Vercel.
+Mon conseil : Gardez l'habitude de taper npm run dev pour ouvrir votre app, et npm run sync dès que vous avez fini un changement et que vous voulez le voir sur votre téléphone.
+
+Tout est lié et synchronisé ! 🚀⚡️
